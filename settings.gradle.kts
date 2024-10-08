@@ -21,4 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "MoviesApp"
 include(":app")
- 
+include(":core-api")
+include(":core-ui")
+include(":core-utils")
+include(":core-database")
+include(":feature-now-playing-movies-list")
+include(":feature-movie-details")
