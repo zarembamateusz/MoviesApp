@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -11,9 +14,23 @@ android {
 
     defaultConfig {
         minSdk = 26
+        val secretProperties = Properties()
+        val secretPropertiesFile = file("$rootDir/secrets.properties")
+        if (secretPropertiesFile.exists()) {
+            secretProperties.load(FileInputStream(secretPropertiesFile))
+            buildConfigField(
+                "String",
+                "MOVIES_API_KEY",
+                secretProperties["MOVIES_API_KEY"]?.toString() ?: ""
+            )
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -29,9 +46,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 dependencies {
@@ -40,6 +54,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.hilt.android)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter)
     ksp(libs.hilt.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.hilt.android.testing)
