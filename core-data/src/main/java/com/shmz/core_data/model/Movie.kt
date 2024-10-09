@@ -14,5 +14,6 @@ data class Movie(
     val popularity: Double,
     val genres: List<Int>,
     val originalLanguage: String,
-    val originalTitle: String
+    val originalTitle: String,
+    val isFavorite: Boolean = false
 )
