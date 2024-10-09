@@ -22,6 +22,9 @@ appcompat = "1.7.0"
 jetbrainsKotlinJvm = "1.9.0"
 swipe = "1.1.1"
 retrofit = "2.11.0"
+navigation = "2.7.1"
+appcompatVersion = "1.7.0"
+hilt-navigation = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -57,6 +60,10 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 swipe = { group = "me.saket.swipe", name = "swipe", version.ref = "swipe" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation" }
+
 
 
 
