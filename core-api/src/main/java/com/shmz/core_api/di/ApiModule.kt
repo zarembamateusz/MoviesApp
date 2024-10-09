@@ -2,9 +2,12 @@ package com.shmz.core_api.di
 
 import com.shmz.core_api.BuildConfig
 import com.shmz.core_api.Constant
+import com.shmz.core_api.MovieApi
+import com.shmz.core_api.MovieApiImpl
 import com.shmz.core_api.NowPlayingApi
 import com.shmz.core_api.NowPlayingApiImpl
 import com.shmz.core_api.interceptor.AuthInterceptor
+import com.shmz.core_api.services.MovieApiService
 import com.shmz.core_api.services.NowPlayingApiService
 import dagger.Module
 import dagger.Provides
@@ -51,11 +54,21 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): NowPlayingApiService =
+    fun provideNowPlayingApiService(retrofit: Retrofit): NowPlayingApiService =
         retrofit.create(NowPlayingApiService::class.java)
 
     @Provides
     @Singleton
-    fun provideApi(apiService: NowPlayingApiService): NowPlayingApi =
+    fun provideMovieApiService(retrofit: Retrofit): MovieApiService =
+        retrofit.create(MovieApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideNowPlayingApi(apiService: NowPlayingApiService): NowPlayingApi =
         NowPlayingApiImpl(apiService)
+
+    @Provides
+    @Singleton
+    fun provideMovieApi(apiService: MovieApiService): MovieApi =
+        MovieApiImpl(apiService)
 }

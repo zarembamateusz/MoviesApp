@@ -1,7 +1,9 @@
 package com.shmz.core_data.di
 
-import com.shmz.core_data.NowPlayingRepository
-import com.shmz.core_data.NowPlayingRepositoryImpl
+import com.shmz.core_data.repositories.MovieRepository
+import com.shmz.core_data.repositories.MovieRepositoryImpl
+import com.shmz.core_data.repositories.NowPlayingRepository
+import com.shmz.core_data.repositories.NowPlayingRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -11,5 +13,8 @@ import dagger.hilt.android.components.ViewModelComponent
 @InstallIn(ViewModelComponent::class)
 interface DomainAndroidModule {
     @Binds
-    fun nowPlayingViewModel(nowPlayingRepository: NowPlayingRepositoryImpl): NowPlayingRepository
+    fun nowPlayingRepository(nowPlayingRepository: NowPlayingRepositoryImpl): NowPlayingRepository
+
+    @Binds
+    fun movieRepository(movieRepository: MovieRepositoryImpl): MovieRepository
 }

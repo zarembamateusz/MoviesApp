@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rating_10">Rating: %1$s/10</string>
+    <string name="adult_content">Adult Content</string>
+    <string name="release_date">Release Date: %1$s</string>
+    <string name="votes">(%1$s votes)</string>
+</resources>

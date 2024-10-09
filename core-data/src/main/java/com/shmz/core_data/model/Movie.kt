@@ -12,7 +12,7 @@ data class Movie(
     val isAdult: Boolean,
     val isVideo: Boolean,
     val popularity: Double,
-    val genres: List<Int>,
+    val genres: List<Int>?,
     val originalLanguage: String,
     val originalTitle: String,
     val isFavorite: Boolean = false

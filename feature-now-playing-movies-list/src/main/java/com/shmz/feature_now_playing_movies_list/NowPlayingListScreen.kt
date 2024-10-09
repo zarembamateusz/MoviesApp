@@ -43,14 +43,18 @@ import com.shmz.core_utils.StartEffect
 import com.shmz.core_utils.asString
 
 @Composable
-fun NowPlayingListScreen(viewModel: NowPlayingViewModel = hiltViewModel()) {
+fun NowPlayingListScreen(
+    navigationToMovieDetails: (Int) -> Unit,
+    viewModel: NowPlayingViewModel = hiltViewModel()
+) {
     StartEffect(viewModel::onStart)
     val screenState = viewModel.screenState.collectAsStateWithLifecycle().value
     NowPlayingListScreen(
         screenState = screenState,
         onPreviousPage = viewModel::onPreviousPage,
         onNextPage = viewModel::onNextPage,
-        onFavoriteClick = viewModel::onFavoriteClick
+        onFavoriteClick = viewModel::onFavoriteToggle,
+        navigationToMovieDetails = navigationToMovieDetails
     )
 }
 
@@ -60,11 +64,11 @@ fun NowPlayingListScreen(
     onPreviousPage: (Int) -> Unit,
     onNextPage: (Int) -> Unit,
     onFavoriteClick: (Int, Boolean) -> Unit,
+    navigationToMovieDetails: (Int) -> Unit
 ) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
-        topBar = {
-        },
+        topBar = { }, // TODO
         content = {
             Box(
                 modifier = Modifier
@@ -81,7 +85,8 @@ fun NowPlayingListScreen(
                         playingInfo = screenState.playingInfo,
                         onFavoriteClick = onFavoriteClick,
                         onNextPage = onNextPage,
-                        onPreviousPage = onPreviousPage
+                        onPreviousPage = onPreviousPage,
+                        navigationToMovieDetails = navigationToMovieDetails
                     )
 
                     NowPlayingListState.Loading -> LoadingScreen()
@@ -96,7 +101,8 @@ fun MovieListWithPagination(
     playingInfo: PlayingInfo,
     onFavoriteClick: (Int, Boolean) -> Unit,
     onPreviousPage: (Int) -> Unit,
-    onNextPage: (Int) -> Unit
+    onNextPage: (Int) -> Unit,
+    navigationToMovieDetails: (Int) -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
@@ -109,7 +115,8 @@ fun MovieListWithPagination(
             items(playingInfo.movies) { movie ->
                 MovieItem(
                     movie = movie,
-                    onFavoriteClick = onFavoriteClick
+                    onFavoriteClick = onFavoriteClick,
+                    navigationToMovieDetails = navigationToMovieDetails
                 )
             }
         }
@@ -126,12 +133,16 @@ fun MovieListWithPagination(
 @Composable
 fun MovieItem(
     movie: Movie,
-    onFavoriteClick: (Int, Boolean) -> Unit
+    onFavoriteClick: (Int, Boolean) -> Unit,
+    navigationToMovieDetails: (Int) -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
+        onClick = {
+            navigationToMovieDetails(movie.id)
+        },
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface

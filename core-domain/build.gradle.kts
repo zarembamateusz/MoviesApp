@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.shmz.feature_movie_details"
+    namespace = "com.shmz.core_domain"
     compileSdk = 34
 
     defaultConfig {
@@ -29,40 +29,21 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
 }
 
 dependencies {
 
-    implementation(project(":core-ui"))
     implementation(project(":core-data"))
-    implementation(project(":core-utils"))
-    implementation(project(":core-domain"))
     implementation(libs.androidx.core.ktx)
+    implementation(libs.kotlin.serialization)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.coil.compose)
-    implementation(libs.hilt.navigation)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.material)
-    implementation(libs.google.material)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.moshi)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.hilt.android)
-    implementation(libs.swipe)
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.room)
     ksp(libs.androidx.room.compiler)
