@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="release_date">Release date: %1$s</string>
+    <string name="favorite">Favorite</string>
+    <string name="unexpected_error">UnexpectedError</string>
+    <string name="network_error">NetworkError</string>
+    <string name="page_of">Page %1$s of %2$s</string>
+</resources>
