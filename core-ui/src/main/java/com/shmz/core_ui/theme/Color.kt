@@ -1,4 +1,4 @@
-package com.shmz.moviesapp.ui.theme
+package com.shmz.core_ui.theme
 
 import androidx.compose.ui.graphics.Color
 

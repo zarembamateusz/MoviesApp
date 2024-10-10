@@ -6,8 +6,8 @@ import com.shmz.core_data.repositories.NowPlayingResult
 import com.shmz.core_domain.ChangeFavoriteStateUseCase
 import com.shmz.core_domain.FetchNowPlayingMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class NowPlayingViewModel @Inject constructor(
     private val fetchNowPlayingMoviesUseCase: FetchNowPlayingMoviesUseCase,
-    private val changeFavoriteStateUseCase: ChangeFavoriteStateUseCase
+    private val changeFavoriteStateUseCase: ChangeFavoriteStateUseCase,
+    private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
     private var job: Job? = null
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, _ ->
@@ -37,7 +38,7 @@ class NowPlayingViewModel @Inject constructor(
     }
 
     fun onFavoriteToggle(movieId: Int, isFavorite: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             changeFavoriteStateUseCase(movieId, isFavorite)
         }
     }
@@ -55,7 +56,7 @@ class NowPlayingViewModel @Inject constructor(
     private fun loadMovies(page: Int) {
         viewModelScope.launch {
             job?.cancel()
-            job = launch(Dispatchers.IO + coroutineExceptionHandler) {
+            job = launch(ioDispatcher + coroutineExceptionHandler) {
                 fetchNowPlayingMoviesUseCase(pageNumber = page).collect { state ->
                     when (state) {
                         NowPlayingResult.NetworkError -> {

@@ -6,8 +6,8 @@ import com.shmz.core_data.repositories.MovieResult
 import com.shmz.core_domain.ChangeFavoriteStateUseCase
 import com.shmz.core_domain.FetchMoveUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
     private val changeFavoriteStateUseCase: ChangeFavoriteStateUseCase,
-    private val fetchMoveUseCase: FetchMoveUseCase
+    private val fetchMoveUseCase: FetchMoveUseCase,
+    private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, _ ->
         _screenState.value = MovieDetailsScreenState.Error
@@ -30,13 +31,13 @@ class MovieDetailsViewModel @Inject constructor(
     }
 
     fun onFavoriteToggle(movieId: Int, isFavorite: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             changeFavoriteStateUseCase(movieId, isFavorite)
         }
     }
 
     private fun observeMovie(movieId: Int) {
-        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+        viewModelScope.launch(ioDispatcher + coroutineExceptionHandler) {
             fetchMoveUseCase(movieId).collect { movieResult ->
                 _screenState.value = when (movieResult) {
                     MovieResult.NetworkError -> MovieDetailsScreenState.Error
