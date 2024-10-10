@@ -39,7 +39,6 @@ import com.shmz.core_data.model.Movie
 import com.shmz.core_data.model.PlayingInfo
 import com.shmz.core_ui.composnents.ErrorScreen
 import com.shmz.core_ui.composnents.LoadingScreen
-import com.shmz.core_utils.StartEffect
 import com.shmz.core_utils.asString
 
 @Composable
@@ -47,7 +46,6 @@ fun NowPlayingListScreen(
     navigationToMovieDetails: (Int) -> Unit,
     viewModel: NowPlayingViewModel = hiltViewModel()
 ) {
-    StartEffect(viewModel::onStart)
     val screenState = viewModel.screenState.collectAsStateWithLifecycle().value
     NowPlayingListScreen(
         screenState = screenState,
