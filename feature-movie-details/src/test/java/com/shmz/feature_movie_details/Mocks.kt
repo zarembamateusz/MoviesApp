@@ -1,6 +1,6 @@
 package com.shmz.feature_movie_details
 
-import com.shmz.core_data.model.Movie
+import com.shmz.core_model.model.Movie
 import io.mockk.every
 import io.mockk.mockk
 

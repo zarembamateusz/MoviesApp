@@ -37,8 +37,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.shmz.core_data.model.Movie
-import com.shmz.core_data.model.PlayingInfo
 import com.shmz.core_ui.composnents.ErrorScreen
 import com.shmz.core_ui.composnents.LoadingScreen
 import com.shmz.core_utils.asString
@@ -105,7 +103,7 @@ fun NowPlayingListScreen(
 
 @Composable
 fun MovieListWithPagination(
-    playingInfo: PlayingInfo,
+    playingInfo: com.shmz.core_model.model.PlayingInfo,
     onFavoriteClick: (Int, Boolean) -> Unit,
     onPreviousPage: (Int) -> Unit,
     onNextPage: (Int) -> Unit,
@@ -139,7 +137,7 @@ fun MovieListWithPagination(
 
 @Composable
 fun MovieItem(
-    movie: Movie,
+    movie: com.shmz.core_model.model.Movie,
     onFavoriteClick: (Int, Boolean) -> Unit,
     navigationToMovieDetails: (Int) -> Unit
 ) {

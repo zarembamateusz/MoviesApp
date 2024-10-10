@@ -1,8 +1,8 @@
 package com.shmz.feature_now_playing_movies_list
 
-import com.shmz.core_data.repositories.NowPlayingResult
 import com.shmz.core_domain.ChangeFavoriteStateUseCase
 import com.shmz.core_domain.FetchNowPlayingMoviesUseCase
+import com.shmz.core_model.results.NowPlayingResult
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.coEvery
 import io.mockk.mockk

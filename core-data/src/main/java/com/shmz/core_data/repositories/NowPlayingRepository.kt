@@ -3,8 +3,8 @@ package com.shmz.core_data.repositories
 import com.shmz.core_api.NowPlayingApi
 import com.shmz.core_api.NowPlayingApiResult
 import com.shmz.core_data.converter.asDomainModel
-import com.shmz.core_data.model.PlayingInfo
 import com.shmz.core_database.dao.MovieInfoDao
+import com.shmz.core_model.results.NowPlayingResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class NowPlayingRepositoryImpl @Inject constructor(
             is NowPlayingApiResult.Success -> {
                 val result = response.result
                 movieInfoDao.getFavorites(result.results.map { it.id }).collect { favoriteMovies ->
-                    val playingInfo = PlayingInfo(
+                    val playingInfo = com.shmz.core_model.model.PlayingInfo(
                         page = result.page,
                         movies = result.results.map { movie ->
                             movie.asDomainModel(favoriteMovies.contains(movie.id))
@@ -38,14 +38,4 @@ class NowPlayingRepositoryImpl @Inject constructor(
             }
         }
     }
-}
-
-sealed interface NowPlayingResult {
-    data class Success(
-        val result: PlayingInfo
-    ) : NowPlayingResult
-
-    data object NetworkError : NowPlayingResult
-
-    data object UnexpectedError : NowPlayingResult
 }

@@ -3,10 +3,9 @@ package com.shmz.core_data.converter
 
 import com.shmz.core_api.model.MovieListItemResponse
 import com.shmz.core_data.constant.Constants.IMAGE_BASE_URL
-import com.shmz.core_data.model.Movie
 
-fun MovieListItemResponse.asDomainModel(isFavorite: Boolean): Movie =
-    Movie(
+fun MovieListItemResponse.asDomainModel(isFavorite: Boolean): com.shmz.core_model.model.Movie =
+    com.shmz.core_model.model.Movie(
         id = id,
         title = title,
         overview = overview,

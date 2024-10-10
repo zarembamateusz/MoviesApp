@@ -26,8 +26,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
     }
 
     buildFeatures {
@@ -42,7 +42,7 @@ dependencies {
 
     implementation(project(":core-ui"))
     implementation(project(":core-utils"))
-    implementation(project(":core-data"))
+    implementation(project(":core-model"))
     implementation(project(":core-domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.hilt.navigation)

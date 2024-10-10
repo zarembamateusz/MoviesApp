@@ -3,7 +3,7 @@ package com.shmz.core_data.repositories
 import com.shmz.core_api.model.DatesResponse
 import com.shmz.core_api.model.MovieListItemResponse
 import com.shmz.core_api.model.NowPlayingResponse
-import com.shmz.core_data.model.Movie
+import com.shmz.core_model.model.Movie
 import io.mockk.every
 import io.mockk.mockk
 

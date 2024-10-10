@@ -1,4 +1,4 @@
-package com.shmz.core_data.model
+package com.shmz.core_model.model
 
 data class Movie(
     val id: Int,

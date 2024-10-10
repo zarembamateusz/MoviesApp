@@ -2,9 +2,9 @@ package com.shmz.feature_now_playing_movies_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shmz.core_data.repositories.NowPlayingResult
 import com.shmz.core_domain.ChangeFavoriteStateUseCase
 import com.shmz.core_domain.FetchNowPlayingMoviesUseCase
+import com.shmz.core_model.results.NowPlayingResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler

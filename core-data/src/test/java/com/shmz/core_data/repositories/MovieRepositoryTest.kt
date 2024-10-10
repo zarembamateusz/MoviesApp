@@ -4,6 +4,7 @@ import com.shmz.core_api.MovieApi
 import com.shmz.core_api.MovieApiResult
 import com.shmz.core_database.dao.MovieInfoDao
 import com.shmz.core_database.entity.MovieInfo
+import com.shmz.core_model.results.MovieResult
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.Runs
 import io.mockk.coEvery

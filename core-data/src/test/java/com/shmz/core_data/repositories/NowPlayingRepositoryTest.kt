@@ -3,6 +3,7 @@ package com.shmz.core_data.repositories
 import com.shmz.core_api.NowPlayingApi
 import com.shmz.core_api.NowPlayingApiResult
 import com.shmz.core_database.dao.MovieInfoDao
+import com.shmz.core_model.results.NowPlayingResult
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.coEvery
 import io.mockk.every

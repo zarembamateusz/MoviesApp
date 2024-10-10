@@ -1,8 +1,8 @@
 package com.shmz.feature_movie_details
 
-import com.shmz.core_data.repositories.MovieResult
 import com.shmz.core_domain.ChangeFavoriteStateUseCase
 import com.shmz.core_domain.FetchMoveUseCase
+import com.shmz.core_model.results.MovieResult
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.coEvery
 import io.mockk.coVerify
