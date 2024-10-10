@@ -32,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.shmz.core_data.model.Movie
+import com.shmz.core_ui.composnents.ErrorScreen
 import com.shmz.core_ui.composnents.LoadingScreen
 import com.shmz.core_utils.StartEffect
 import com.shmz.core_utils.asString
@@ -107,7 +108,7 @@ fun MovieDetailsScreen(
                     )
 
                     MovieDetailsScreenState.Loading -> LoadingScreen()
-                    MovieDetailsScreenState.Error -> TODO()
+                    MovieDetailsScreenState.Error -> ErrorScreen()
                 }
             }
         }

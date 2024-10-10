@@ -7,4 +7,5 @@
     <string name="unexpected_error">UnexpectedError</string>
     <string name="network_error">NetworkError</string>
     <string name="page_of">Page %1$s of %2$s</string>
+    <string name="now_playing_movies">Now playing movies</string>
 </resources>
