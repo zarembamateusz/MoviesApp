@@ -10,6 +10,7 @@ https://github.com/user-attachments/assets/e3873f19-bcf7-4088-93c9-71659f2d5fab
 ## TODO
 - [ ] Add search
 - [ ] Cleaning gradle files and add contacts between modules
+- [ ] Improve data flow
 - [ ] Cleaning compose files from colors etc.
 - [ ] Add caching movies in local database
 
